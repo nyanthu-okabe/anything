@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Nyanthu Anything</title>
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+        <!-- Prism for syntax highlighting -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --bg: #0f1724;
+                --card: #0b1220;
+                --muted: #9aa4bd;
+                --accent: #7dd3fc;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                font-family:
+                    Inter,
+                    ui-sans-serif,
+                    system-ui,
+                    -apple-system,
+                    "Hiragino Kaku Gothic ProN",
+                    "Noto Sans JP",
+                    "Segoe UI",
+                    Roboto,
+                    "Helvetica Neue",
+                    Arial;
+                background: linear-gradient(180deg, #071027 0%, #071430 100%);
+                color: #e6eef8;
+            }
+            .wrap {
+                max-width: 980px;
+                margin: 40px auto;
+                padding: 24px;
+            }
+            header {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            h1 {
+                margin: 0;
+                font-size: 20px;
+            }
+            p.lead {
+                margin: 6px 0 20px;
+                color: var(--muted);
+            }
+            nav {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin-bottom: 18px;
+            }
+            a.btn {
+                background: rgba(255, 255, 255, 0.03);
+                padding: 8px 12px;
+                border-radius: 8px;
+                text-decoration: none;
+                color: var(--muted);
+                font-size: 13px;
+            }
+            .grid {
+                display: grid;
+                //grid-template-columns: 1fr 320px;
+                gap: 20px;
+            }
+            main {
+                background: linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.02),
+                    transparent
+                );
+                padding: 18px;
+                border-radius: 12px;
+            }
+            aside {
+                position: sticky;
+                top: 24px;
+                height: fit-content;
+                background: rgba(255, 255, 255, 0.02);
+                padding: 12px;
+                border-radius: 12px;
+            }
+            section {
+                margin-bottom: 18px;
+            }
+            h2 {
+                margin: 0 0 8px;
+                font-size: 16px;
+            }
+            .card {
+                background: var(--card);
+                padding: 12px;
+                border-radius: 10px;
+                color: #dbeafe;
+            }
+            pre {
+                background: #010610;
+                border-radius: 8px;
+                padding: 12px;
+                overflow: auto;
+            }
+            code {
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+                    "Noto Mono", monospace;
+                font-size: 13px;
+            }
+            .meta {
+                font-size: 13px;
+                color: var(--muted);
+            }
+            footer {
+                margin-top: 30px;
+                color: var(--muted);
+                font-size: 13px;
+                text-align: center;
+            }
+            .copy {
+                float: right;
+                font-size: 12px;
+                background: transparent;
+                border: 1px solid rgba(255, 255, 255, 0.04);
+                padding: 6px;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+            @media (max-width: 880px) {
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <header>
+                <img style="width: 56px; height: 56px" src="./n.png" />
+
+                <div>
+                    <h1>Nyanthu Anything</h1>
+                    <p class="lead">軽量で軽めのOSSインストーラーです</p>
+                </div>
+            </header>
+
+            <nav>
+                <a class="btn" href="#quick-install">Quick Install</a>
+                <a class="btn" href="#examples">Examples</a>
+                <a class="btn" href="#deploy">Deploy</a>
+                <a class="btn" href="#performance">Performance</a>
+                <a class="btn" href="#compare">比較</a>
+            </nav>
+
+            <div class="grid">
+                <main>
+                    <section id="overview" class="card">
+                        <h2>Overview</h2>
+                        <p class="meta">
+                            Hono
+                            は軽量なルーティングとミドルウェアを提供するフレームワーク。Cloudflare
+                            Workers や Deno Deploy で使いやすい。
+                        </p>
+                        <ul>
+                            <li>
+                                API サーバーや
+                                SSR、エッジでの高速レスポンスに強い
+                            </li>
+                            <li>小さくて直感的な API</li>
+                            <li>
+                                Express
+                                ライクな感覚で書けるがバンドルサイズが小さい
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="quick-install" class="card">
+                        <h2>Quick Start</h2>
+                        <p class="meta">
+                            コピペでできる最短インストール（推奨）
+                        </p>
+                        <pre><button class="copy" data-target="q1">コピー</button><code class="language-bash">curl https://install.nyanthu.com/install.sh | sh
+</code></pre>
+                        <p class="meta">
+                            install.shがOSに合わせてインストールします。インストール後は、<code>nyanthu</code>コマンドで使用できます。
+                        </p>
+                    </section>
+
+                    <section id="examples" class="card">
+                        <h2>Examples</h2>
+                        <h3>Routing & params</h3>
+                        <pre><button class="copy" data-target="e1">コピー</button><code class="language-js">app.get('/users/:id', (c) => {
+  const id = c.req.param('id')
+  return c.text(`user: ${id}`)
+})
+</code></pre>
+
+                        <h3>Middleware</h3>
+                        <pre><button class="copy" data-target="e2">コピー</button><code class="language-js">app.use('*', async (c, next) => {
+  // ロギング
+  console.log(c.req.method, c.req.url)
+  await next()
+})
+</code></pre>
+
+                        <h3>Static files (Workers/Deno)</h3>
+                        <p class="meta">
+                            静的配信は環境依存。Workers なら KV/Assets、Deno
+                            ならファイル配信や reverse-proxy を使う。
+                        </p>
+                    </section>
+
+                    <section id="deploy" class="card">
+                        <h2>Deploy</h2>
+                        <h3>Deno Deploy</h3>
+                        <p class="meta">
+                            Deno Deploy にそのまま置ける。main を export default
+                            するパターンが多い。
+                        </p>
+
+                        <h3>Cloudflare Workers / Pages</h3>
+                        <p class="meta">
+                            Workers にバンドルしてデプロイ。Hono は Workers
+                            での利用が公式にサポートされている。
+                        </p>
+                    </section>
+
+                    <section id="performance" class="card">
+                        <h2>Performance Tips</h2>
+                        <ul>
+                            <li>不要なミドルウェアはルートに限定して使う</li>
+                            <li>
+                                レスポンスを早く返す（ストリーミングを検討）
+                            </li>
+                            <li>
+                                バンドルサイズは最小に：使わない polyfill は除外
+                            </li>
+                            <li>
+                                Edge 環境では cold start
+                                を意識する（軽い依存にする）
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="compare" class="card">
+                        <h2>比較と選び方</h2>
+                        <p class="meta">他の選択肢との比較。</p>
+                        <ul>
+                            <li>
+                                <strong>Express/Node</strong>:
+                                豊富だがエッジ向けではない
+                            </li>
+                            <li>
+                                <strong>Oak (Deno)</strong>: Deno 版で
+                                feature-rich、Hono は軽量で速い
+                            </li>
+                            <li>
+                                <strong>Fastify</strong>: 高速だが Node
+                                環境に依存
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="resources" class="card">
+                        <h2>Resources</h2>
+                        <ul>
+                            <li>公式ドキュメント（deno.land / hono.dev）</li>
+                            <li>Cloudflare Workers のデプロイガイド</li>
+                            <li>サンプルリポジトリ集</li>
+                        </ul>
+                    </section>
+                </main>
+            </div>
+
+            <footer>
+                <small>作ったやつ — 編集・配布自由。問題あったら直すで。</small>
+            </footer>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script>
+            // Copy buttons
+            document.querySelectorAll(".copy").forEach((btn) => {
+                btn.addEventListener("click", async () => {
+                    const code =
+                        btn.nextElementSibling ||
+                        btn.parentElement.querySelector("code");
+                    if (!code) return;
+                    try {
+                        await navigator.clipboard.writeText(code.innerText);
+                        btn.textContent = "OK";
+                        setTimeout(() => (btn.textContent = "コピー"), 800);
+                    } catch (e) {
+                        btn.textContent = "fail";
+                        setTimeout(() => (btn.textContent = "コピー"), 800);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
